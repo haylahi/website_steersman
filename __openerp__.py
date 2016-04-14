@@ -7,5 +7,5 @@
 	'depends': ['website_enterprise'],
 	'data': ['data/website_enterprise.assets_frontend.xml'],
 	'application': False,
-	'installable': True
+	'auto_install': True,
 }
