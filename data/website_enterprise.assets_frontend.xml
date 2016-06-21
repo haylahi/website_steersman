@@ -7,7 +7,8 @@
 	</template>
  	<template id="assets_frontend_web" inherit_id="web.assets_common">
 	  	<xpath expr="//link[@href='/web/static/src/fonts/lato/stylesheet.css']" position="replace"/>
-
-
+		
+	  	<xpath expr="//link[@href='/web/static/src/less/fonts.less']" position="replace"/>
+		
 	</template>
 </data></odoo>
