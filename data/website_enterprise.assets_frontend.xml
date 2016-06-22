@@ -5,16 +5,25 @@
 		<xpath expr="//link[@href='/web/static/src/less/utils.less']" position="replace"/>
 
 	</template>
+	<!-- Remove unneeded fonts -->
  	<template id="assets_frontend_web" inherit_id="web.assets_common">
 	  	<xpath expr="//link[@href='/web/static/src/fonts/lato/stylesheet.css']" position="replace"/>
 		
 	  	<xpath expr="//link[@href='/web/static/src/less/fonts.less']" position="replace"/>
-		
+		<xpath expr="//script[@src='/web/static/lib/es5-shim/es5-shim.min.js']" position="replace" />
+	
+
 	</template>
-	<template id="assets_backend" inherit_id="web.assets_backend">
+	<!-- add fonts back in for backend -->
+	<template id="web_assets_backend" inherit_id="web.assets_backend">
 	  <xpath expr="//link[@href='/web/static/lib/jquery.textext/jquery.textext.css']" position="after">
 	    
             <link rel="stylesheet" href="/web/static/src/less/fonts.less"/>
 	  </xpath>
 	</template>
+	<!--template id="layout.shim" inherit_id="website.layout">
+	  	<![CDATA[<!--[if lt IE 9]>
+			 <script src="/web/static/lib/es5-shim/es5-shim.min.js"></script>
+		<![endif]-->]]>
+	</template-->
 </data></odoo>
