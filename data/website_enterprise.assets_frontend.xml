@@ -12,12 +12,14 @@
 		
 	  	<xpath expr="//link[@href='/web/static/src/less/fonts.less']" position="replace"/>
 		<xpath expr="//script[@src='/web/static/lib/es5-shim/es5-shim.min.js']" position="replace" />
+		<xpath expr="//script[@src='/web/static/lib/jquery/jquery.js']" position="replace" />
+
 	</template>
 	<!-- add fonts back in for backend -->
 	<template id="web_assets_backend" inherit_id="web.assets_backend">
 	  <xpath expr="//link[@href='/web/static/lib/jquery.textext/jquery.textext.css']" position="after">
             <link rel="stylesheet" href="/web/static/src/less/fonts.less"/>
-	    	    
+	    
 
 	  </xpath>
 	</template>
@@ -25,10 +27,17 @@
 	<template id="layout_shim" inherit_id="website.layout">
 	  <xpath expr="//title" position="after">
 	    <t><![CDATA[<!--[if lt IE 9]>
-			  <script src="/web/static/lib/es5-shim/es5-shim.min.js"></script>
-		   <![endif]-->]]></t>
+	    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.9/es5-shim.js"></script>
+	    <![endif]-->]]></t>
+	      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	    	 
+
+	  </xpath>			
+	</template>
+	<template id="cdn_bootstrap" inherit_id="web.webclient_bootstrap">
+	  <xpath expr="//title" position="after">
+	     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	    
 	  </xpath>
-	 
-			
 	</template>
 </data></odoo>
