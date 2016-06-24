@@ -6,38 +6,46 @@
 		
 		
 	</template>
-	<!-- Remove unneeded fonts -->
- 	<template id="assets_frontend_web" inherit_id="web.assets_common">
+	<!-- Remove unneeded assets from common file -->
+ 	<template id="assets_common_web" inherit_id="web.assets_common">
 	  	<xpath expr="//link[@href='/web/static/src/fonts/lato/stylesheet.css']" position="replace"/>
 		
 	  	<xpath expr="//link[@href='/web/static/src/less/fonts.less']" position="replace"/>
 		<xpath expr="//script[@src='/web/static/lib/es5-shim/es5-shim.min.js']" position="replace" />
 		<xpath expr="//script[@src='/web/static/lib/jquery/jquery.js']" position="replace" />
-
+		<xpath expr="//script[@src='/web/static/lib/underscore/underscore.js']" position="replace" />
+		<xpath expr="//script[@src='/web/static/src/js/tour.js']" position="replace" />
+		<xpath expr="//script[@src='/web/static/lib/jquery.ui/jquery-ui.js']" position="replace" />
+	
+		<xpath expr="//link[@href='/web/static/lib/jquery.ui/jquery-ui.css']" position="replace" />
 	</template>
 	<!-- add fonts back in for backend -->
 	<template id="web_assets_backend" inherit_id="web.assets_backend">
 	  <xpath expr="//link[@href='/web/static/lib/jquery.textext/jquery.textext.css']" position="after">
             <link rel="stylesheet" href="/web/static/src/less/fonts.less"/>
-	    
-
 	  </xpath>
 	</template>
-	
+	<!-- Add shim conditionally and load assets from CDN -->
 	<template id="layout_shim" inherit_id="website.layout">
 	  <xpath expr="//title" position="after">
 	    <t><![CDATA[<!--[if lt IE 9]>
 	    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.9/es5-shim.js"></script>
 	    <![endif]-->]]></t>
 	      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	    	 
+	      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.2/underscore-min.js"></script>	 
+	      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/3.5.1/select2-bootstrap.min.css" />
+	      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/3.5.1/select2.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 
 	  </xpath>			
 	</template>
+	<!-- add things to backend -->
 	<template id="cdn_bootstrap" inherit_id="web.webclient_bootstrap">
 	  <xpath expr="//title" position="after">
 	     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	    
+	     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.2/underscore-min.js"></script>
+	     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+	     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css" />
 	  </xpath>
 	</template>
 </data></odoo>
