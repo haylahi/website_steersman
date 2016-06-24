@@ -42,10 +42,17 @@
 	      <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 	      <t t-call-assets="web.assets_common" t-css="false"/>
               <t t-call-assets="website.assets_frontend" t-css="false"/>
+	      <script type="text/javascript">
+    odoo.define('web.csrf', function (require) {
+    var token = "<t t-esc="request.csrf_token(None)"/>";
+    require('web.core').csrf_token = token;
+    require('qweb').default_dict.csrf_token = token;
+    });
+              </script>
 	  </xpath>
 	  <xpath expr="//t[@t-call-assets='web.assets_common' and @t-css='false']" position="replace"/>
 	  <xpath expr="//t[@t-call-assets='website.assets_frontend' and @t-css='false']" position="replace"/>
-	    
+	 
 	  
 	</template>
 	<!-- add things to backend -->
@@ -61,6 +68,18 @@
 	      <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 	 
               <t t-call-assets="web.assets_common" t-css="false"/>
+	     
 	  </xpath>
+	</template>
+	<template id="optimized_layout_editor" inherit_id="website.layout_editor">
+	    <xpath expr="//div[@id='wrapwrap']" position="after">
+	    <t groups="base.group_website_designer" t-call-assets="web_editor.summernote"/>
+            <t groups="base.group_website_designer" t-call-assets="web_editor.editor"/>
+
+	    <t t-call-assets="website.assets_editor" async="True"/>
+	    </xpath>
+	    <xpath expr="//t[@t-call-assets='website.assets_editor']" position="replace"/>
+	    <xpath expr="//t[@t-call-assets='web_editor.summernote']" position="replace"/>
+	    <xpath expr="//t[@t-call-assets='web_editor.editor']" position="replace"/>
 	</template>
 </data></odoo>
