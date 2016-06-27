@@ -20,6 +20,7 @@
 		
 		<xpath expr="//link[@href='/web/static/lib/select2/select2.css']" position="replace" />
 		<xpath expr="//script[@src='/web/static/lib/bootstrap-datetimepicker/src/js/bootstrap-datetimepicker.js']" position="replace"/>
+		<!-- loading bootstrap from cdn increases initial page load significantly -->
 	</template>
 	<!-- add fonts back in for backend -->
 	<template id="web_assets_backend" inherit_id="web.assets_backend">
