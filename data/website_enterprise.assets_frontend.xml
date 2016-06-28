@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo><data>
+  <!-- Copyright (C) Steersman - All Rights Reserved
+  Written by Joshua Herman, Art Shipulen, June 2016 -->
+  <!-- This file removes or replaces various web assets related
+       to the website module and the web module. Removals are done
+       by inheriting the template and using xpath to remove the
+       javascript and then we add it back in-->
 	<template id="assets_frontend" inherit_id="website_enterprise.assets_frontend">
 		<xpath expr="//link[@href='/web/static/src/less/variables.less']" position="replace"/>
 		<xpath expr="//link[@href='/web/static/src/less/utils.less']" position="replace" />
@@ -20,13 +26,14 @@
 		<xpath expr="//script[@src='/web/static/lib/jquery.form/jquery.form.js']" position="replace" />
 		<!-- loading bootstrap from cdn increases initial page load significantly -->
 	</template>
-	<!-- add fonts back in for backend -->
+	<!-- add font styling back in for backend (web) -->
 	<template id="web_assets_backend" inherit_id="web.assets_backend">
 	  <xpath expr="//link[@href='/web/static/lib/jquery.textext/jquery.textext.css']" position="after">
             <link rel="stylesheet" href="/web/static/src/less/fonts.less"/>
 	  </xpath>
 	</template>
-	<!-- Add shim conditionally and load assets from CDN -->
+	<!-- Add shim conditionally and load assets from CDN
+	     and load Javascript at the bottom of the page -->
 	<template id="layout_shim" inherit_id="website.layout">
 	  <xpath expr="//t[@t-esc='request.csrf_token(None)']/.." position="replace" />
 	  <xpath expr="//div[@id='wrapwrap']" position="after">
@@ -44,11 +51,11 @@
 	      <t t-call-assets="web.assets_common" t-css="false"/>
               <t t-call-assets="website.assets_frontend" t-css="false"/>
 	      <script type="text/javascript">
-    odoo.define('web.csrf', function (require) {
-    var token = "<t t-esc="request.csrf_token(None)"/>";
-    require('web.core').csrf_token = token;
-    require('qweb').default_dict.csrf_token = token;
-    });
+		odoo.define('web.csrf', function (require) {
+		var token = "<t t-esc="request.csrf_token(None)"/>";
+		require('web.core').csrf_token = token;
+		require('qweb').default_dict.csrf_token = token;
+		});
     
               </script>
 	      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.3/js/bootstrap-datetimepicker.min.js"></script>
@@ -58,7 +65,7 @@
 	  <xpath expr="//t[@t-call-assets='website.assets_frontend' and @t-css='false']" position="replace"/>
 	 
 	</template>
-	<!-- add things to backend -->
+	<!-- add javascript to backend -->
 	<template id="cdn_bootstrap" inherit_id="web.webclient_bootstrap">
 	  <xpath expr="//title" position="after">
 	   
@@ -76,6 +83,7 @@
 	      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.0.3/js/bootstrap-datetimepicker.min.js"></script>
 	  </xpath>
 	</template>
+	<!-- make layout editor load javascript last -->
 	<template id="optimized_layout_editor" inherit_id="website.layout_editor">
 	    <xpath expr="//div[@id='wrapwrap']" position="after">
 	    <t groups="base.group_website_designer" t-call-assets="web_editor.summernote"/>

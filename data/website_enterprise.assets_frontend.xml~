@@ -12,7 +12,6 @@
 		<xpath expr="//script[@src='/web/static/lib/es5-shim/es5-shim.min.js']" position="replace" />
 		<xpath expr="//script[@src='/web/static/lib/jquery/jquery.js']" position="replace" />
 		<xpath expr="//script[@src='/web/static/lib/underscore/underscore.js']" position="replace" />
-		<xpath expr="//script[@src='/web/static/src/js/tour.js']" position="replace" />
 		<xpath expr="//script[@src='/web/static/lib/jquery.ui/jquery-ui.js']" position="replace" />
 		<xpath expr="//script[@src='/web/static/lib/select2/select2.js']" position="replace" />
 		
@@ -29,7 +28,7 @@
 	</template>
 	<!-- Add shim conditionally and load assets from CDN -->
 	<template id="layout_shim" inherit_id="website.layout">
-	
+	  <xpath expr="//t[@t-esc='request.csrf_token(None)']/.." position="replace" />
 	  <xpath expr="//div[@id='wrapwrap']" position="after">
 	    <t><![CDATA[<!--[if lt IE 9]>
 	    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.9/es5-shim.js"></script>
